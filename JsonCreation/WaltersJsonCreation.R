@@ -1,0 +1,131 @@
+# example json creation:
+
+createdBy <- 'Henrik John'
+organizationName <- 'Erasmus University Medical Center'
+outputLocation <- 'S:/hjohn/EmcWaltersDementiaModel'
+
+settings <- data.frame(targetCohortId = c(18210),
+                       targetCohortName = c('Walters Target 0 Prior 0 Post'),
+                       outcomeId = c(7414),
+                       outcomeName = c('Persons with dementia'))
+
+
+populationSetting <- PatientLevelPrediction::createStudyPopulationSettings(binary = T,
+                                                                           includeAllOutcomes = T, 
+                                                                           firstExposureOnly = F, 
+                                                                           washoutPeriod = 365, 
+                                                                           removeSubjectsWithPriorOutcome = F, 
+                                                                           priorOutcomeLookback = 9999, 
+                                                                           requireTimeAtRisk = T, 
+                                                                           minTimeAtRisk = 365, 
+                                                                           riskWindowStart = 1, 
+                                                                           startAnchor = 'cohort start', 
+                                                                           endAnchor = 'cohort start', 
+                                                                           riskWindowEnd = 365*5, 
+                                                                           verbosity = 'INFO')
+
+modelList <- list()
+#length(modelList) <- 2
+modelList[[1]] <- createModelJson(modelname = 'walters_dementia_model', 
+                                  modelFunction = 'glm',
+                                  standardCovariates = data.frame(covariateId = c(1002,
+                                                                                  8532001),
+                                                                  covariateName = c('age in years',
+                                                                                    'Female'),
+                                                                  points = c(0.20921,
+                                                                             0.12854),
+                                                                  featureExtraction = c('useDemographicsAge',
+                                                                                        'useDemographicsGender')),
+                                  cohortCovariateSettings = list(atlasCovariateIds = c(18203,
+                                                                                       19820,
+                                                                                       18205,
+                                                                                       18207,
+                                                                                       18206,
+                                                                                       18208,
+                                                                                       19842, #18229,
+                                                                                       18230,
+                                                                                       18284,
+                                                                                       18282,
+                                                                                       18283,
+                                                                                       18224),
+                                                                 atlasCovariateNames = c('BMI',
+                                                                                         'BMI squared',
+                                                                                         'Smoking status never',
+                                                                                         'Smoking status past',
+                                                                                         'Smoking status current',
+                                                                                         'History of alcohol problems',
+                                                                                         'History of diabetes',
+                                                                                         'Depression',
+                                                                                         'Stroke',
+                                                                                         'Atrial fibrillation',
+                                                                                         'Current aspirin use',
+                                                                                         'Social deprivation'),
+                                                                 analysisIds = rep(456, 12),
+                                                                 startDays = c(-365,
+                                                                               -365,
+                                                                               -1825,
+                                                                               -1825,
+                                                                               -1825,
+                                                                               -9999,
+                                                                               -9999,
+                                                                               -365,
+                                                                               -9999,
+                                                                               -9999,
+                                                                               -365,
+                                                                               -365),
+                                                                 endDays = c(0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0,
+                                                                             0),
+                                                                 points = c(-0.0616,
+                                                                            0.002508,
+                                                                            0.0,
+                                                                            -0.06792,
+                                                                            -0.08657,
+                                                                            0.443535,
+                                                                            0.286701,
+                                                                            0.833612,
+                                                                            0.577207,
+                                                                            0.220728,
+                                                                            0.252833,
+                                                                            0.225529),
+                                                                 count = rep(F, 12),
+                                                                 ageInteraction = rep(F, 12),
+                                                                 lnAgeInteraction = rep(F, 12)
+                                  ),
+                                  
+                                  measurementCovariateSettings = NULL, 
+                                  measurementCohortCovariateSettings = NULL, 
+                                  ageCovariateSettings = list(names = c('age_squared'),
+                                                              ageMaps = list(function(x){return((x-65.608)^2)}),
+                                                              ageIds = 1,
+                                                              analysisIds = c(458),
+                                                              points = c(-0.00339)),
+                                  finalMapping = 'function(x){return(1-0.9969^exp(x))}',
+                                  predictionType = 'survival'
+)
+
+
+jsonSet <- createStudyJson(packageName = 'EmcWaltersDementiaModel',
+                packageDescription = 'Walters model replicated by EMC',
+                createdBy = createdBy ,
+                organizationName = organizationName,
+                settings = settings,
+                baseUrl = baseUrl,
+                populationSetting = populationSetting ,
+                modelList = modelList,
+                outputLocation = outputLocation)
+
+
+jsonSet <- Hydra::loadSpecifications(file.path(outputLocation,'existingModelSettings.json'))
+Hydra::hydrate(specifications = jsonSet, 
+               outputFolder = 'S:/hjohn/EmcWaltersDementiaModel')
+

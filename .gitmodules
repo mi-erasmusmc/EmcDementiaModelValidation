@@ -4,3 +4,6 @@
 [submodule "EmcMehtaDementiaModel"]
 	path = EmcMehtaDementiaModel
 	url = https://github.com/mi-erasmusmc/EmcMehtaDementiaModel
+[submodule "EmcNoriDementiaModel"]
+	path = EmcNoriDementiaModel
+	url = https://github.com/mi-erasmusmc/EmcNoriDementiaModel

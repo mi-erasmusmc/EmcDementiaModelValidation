@@ -1,0 +1,6 @@
+[submodule "EmcWaltersDementiaModel"]
+	path = EmcWaltersDementiaModel
+	url = https://github.com/mi-erasmusmc/EmcWaltersDementiaModel
+[submodule "EmcMehtaDementiaModel"]
+	path = EmcMehtaDementiaModel
+	url = https://github.com/mi-erasmusmc/EmcMehtaDementiaModel

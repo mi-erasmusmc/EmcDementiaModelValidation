@@ -2,7 +2,7 @@
 
 createdBy <- 'Henrik John'
 organizationName <- 'Erasmus University Medical Center'
-outputLocation <- 'S:/hjohn/EmcMehtaDementiaModel'
+outputLocation <- 'S:/hjohn/EmcDementiaModelValidation/EmcMehtaDementiaModel'
 
 settings <- data.frame(targetCohortId = c(18899),
                        targetCohortName = c('Mehta Target 0 Prior 0 Post [V2]'),
@@ -72,13 +72,13 @@ modelList[[1]] <- createModelJson(modelname = 'mehta_dementia_model',
                                                                                          "Any malignancy",
                                                                                          "Epilepsy",
                                                                                          "Hyperlipidemia",
-                                                                                         "Parkinson’s disease",
+                                                                                         "Parkinsons disease",
                                                                                          "Cardiac disease ASCVD",
                                                                                          "Glaucoma",
                                                                                          "Transplantation",
                                                                                          "Thyroid disorder",
                                                                                          "Gout",
-                                                                                         "Crohn’s and ulcerative disease",
+                                                                                         "Crohns and ulcerative disease",
                                                                                          "Pain and inflammation and pain",
                                                                                          "Depression",
                                                                                          "Psychotic illness",
@@ -124,7 +124,7 @@ modelList[[1]] <- createModelJson(modelname = 'mehta_dementia_model',
 )
 
 
-jsonSet <- createStudyJson(packageName = 'EmcMehtasDementiaModel',
+jsonSet <- createStudyJson(packageName = 'EmcMehtaDementiaModel',
                 packageDescription = 'Mehta model replicated by EMC',
                 createdBy = createdBy ,
                 organizationName = organizationName,
@@ -137,5 +137,5 @@ jsonSet <- createStudyJson(packageName = 'EmcMehtasDementiaModel',
 
 jsonSet <- Hydra::loadSpecifications(file.path(outputLocation,'existingModelSettings.json'))
 Hydra::hydrate(specifications = jsonSet, 
-               outputFolder = 'S:/hjohn/EmcMehtaDementiaModel')
+               outputFolder = 'S:/hjohn/EmcDementiaModelValidation/EmcMehtaDementiaModel')
 

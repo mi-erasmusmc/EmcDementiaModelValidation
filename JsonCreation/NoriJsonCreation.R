@@ -2,7 +2,7 @@
 
 createdBy <- 'Henrik John'
 organizationName <- 'Erasmus University Medical Center'
-outputLocation <- 'S:/hjohn/EmcNoriDementiaModel'
+outputLocation <- 'S:/hjohn/EmcDementiaModelValidation/EmcNoriDementiaModel'
 
 settings <- data.frame(targetCohortId = c(20613),
                        targetCohortName = c("Nori Target 0 Prior 0 Post [v1]"),
@@ -81,35 +81,35 @@ modelList[[1]] <- createModelJson(modelname = 'nori_dementia_model',
                                                                                        20608),
                                                                  atlasCovariateNames = c("MEMORY LOSS",
                                                                                          "PARALYSIS AGITANS",
-                                                                                         "MILD COGNITIVE IMPAIRMENT, SO STATED",
-                                                                                         "BIPOLAR DISORDER, UNSPECIFIED",
+                                                                                         "MILD COGNITIVE IMPAIRMENT SO STATED",
+                                                                                         "BIPOLAR DISORDER UNSPECIFIED",
                                                                                          "UNSPECIFIED PSYCHOSIS",
                                                                                          "LOSS OF WEIGHT",
-                                                                                         "DEPRESSIVE DISORDER, NOT ELSEWHERE CLASSIFIED",
+                                                                                         "DEPRESSIVE DISORDER NOT ELSEWHERE CLASSIFIED",
                                                                                          "ALTERED MENTAL STATUS",
                                                                                          "PERSONAL HISTORY OF FALL",
                                                                                          "OTHER CONVULSIONS",
                                                                                          "UNSPECIFIED FALL",
                                                                                          "OTHER CHRONIC PAIN",
-                                                                                         "ACUTE, BUT ILL-DEFINED, CEREBROVASCULAR DISEASE",
+                                                                                         "ACUTE BUT ILLDEFINED CEREBROVASCULAR DISEASE",
                                                                                          "URGE INCONTINENCE",
                                                                                          "OTHER ALTERATION OF CONSCIOUSNESS",
                                                                                          "UNSPECIFIED CONSTIPATION",
                                                                                          "UNSPECIFIED URINARY INCONTINENCE",
-                                                                                         "ENCOUNTER FOR LONG-TERM (CURRENT) USE OF OTHER MEDICATIONS",
+                                                                                         "ENCOUNTER FOR LONGTERM CURRENT USE OF OTHER MEDICATIONS",
                                                                                          "LACK OF COORDINATION",
                                                                                          "OTHER MALAISE AND FATIGUE",
                                                                                          "DIABETES MELLITUS",
                                                                                          "ABNORMALITY OF GAIT",
                                                                                          "DIZZINESS AND GIDDINESS",
                                                                                          "UNSPECIFIED CEREBRAL ARTERY OCCLUSION WITH CEREBRAL INFARCTION",
-                                                                                         "DIABETES MELLITUS #2",
+                                                                                         "DIABETES MELLITUS 2",
                                                                                          "EDEMA",
-                                                                                         "MUSCLE WEAKNESS (GENERALIZED)",
-                                                                                         "URINARY TRACT INFECTION, SITE NOT SPECIFIED",
-                                                                                         "SCREENING MAMMOGRAPHY, COMPUTER-AIDED DETECTION",
-                                                                                         "COMPUTED TOMOGRAPHY, HEAD OR BRAIN",
-                                                                                         "RADIOLOGIC EXAMINATION, CHEST, SINGLE VIEW, FRONTAL",
+                                                                                         "MUSCLE WEAKNESS GENERALIZED",
+                                                                                         "URINARY TRACT INFECTION SITE NOT SPECIFIED",
+                                                                                         "SCREENING MAMMOGRAPHY COMPUTERAIDED DETECTION",
+                                                                                         "COMPUTED TOMOGRAPHY HEAD OR BRAIN",
+                                                                                         "RADIOLOGIC EXAMINATION CHEST SINGLE VIEW FRONTAL",
                                                                                          "VENLAFAXINE HCL",
                                                                                          "DULOXETINE HCL",
                                                                                          "TOLTERODINE TARTRATE",
@@ -208,5 +208,5 @@ jsonSet <- createStudyJson(packageName = 'EmcNoriDementiaModel',
 
 jsonSet <- Hydra::loadSpecifications(file.path(outputLocation,'existingModelSettings.json'))
 Hydra::hydrate(specifications = jsonSet, 
-               outputFolder = 'S:/hjohn/EmcNoriDementiaModel')
+               outputFolder = 'S:/hjohn/EmcDementiaModelValidation/EmcNoriDementiaModel')
 

@@ -27,7 +27,7 @@ Instructions To Install and Run Package From Github
 ```r
   # get the latest PatientLevelPrediction
   install.packages("devtools")
-  devtools::install_github("OHDSI/PatientLevelPrediction", ref = 'development')
+  devtools::install_github("OHDSI/PatientLevelPrediction", ref = 'develop')
   # check the package
   PatientLevelPrediction::checkPlpInstallation()
 ```
